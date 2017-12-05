@@ -1,0 +1,25 @@
+PACKAGE DOCUMENTATION
+
+package gcp
+    import "."
+
+    Package gcp contains helper functions for APIs across Google Cloud
+    Platform.
+
+    This package is subject to change and carries no guarantees.
+
+FUNCTIONS
+
+func WatchObject(ctx context.Context, obj *storage.ObjectHandle, limit *rate.Limiter) chan ObjectUpdate
+    WatchObject updates the channel whenever the content of a given object
+    changes. If a limit is provided, it's used to rate limit the requests to
+    GCS. If nil, WatchObject polls GCS every 5 seconds for updates.
+
+TYPES
+
+type ObjectUpdate struct {
+    Err        error
+    Generation int64
+}
+
+
